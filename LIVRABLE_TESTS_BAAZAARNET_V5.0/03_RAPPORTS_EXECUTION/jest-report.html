@@ -1,0 +1,260 @@
+<html><head><meta charset="utf-8"/><title>Rapport de Test Backend BazaarNet</title><style type="text/css">html,
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+body {
+  padding: 2rem 1rem;
+  font-size: 0.85rem;
+}
+.jesthtml-content {
+  margin: 0 auto;
+  max-width: 70rem;
+}
+header {
+  display: flex;
+  align-items: center;
+}
+#title {
+  margin: 0;
+  flex-grow: 1;
+}
+#logo {
+  height: 4rem;
+}
+#timestamp {
+  color: #777;
+  margin-top: 0.5rem;
+}
+
+/** SUMMARY */
+#summary {
+  color: #333;
+  margin: 2rem 0;
+  display: flex;
+  font-family: monospace;
+  font-size: 1rem;
+}
+#summary > div {
+  margin-right: 2rem;
+  background: #eee;
+  padding: 1rem;
+  min-width: 15rem;
+}
+#summary > div:last-child {
+  margin-right: 0;
+}
+@media only screen and (max-width: 720px) {
+  #summary {
+    flex-direction: column;
+  }
+  #summary > div {
+    margin-right: 0;
+    margin-top: 2rem;
+  }
+  #summary > div:first-child {
+    margin-top: 0;
+  }
+}
+
+.summary-total {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+.summary-passed {
+  color: #4f8a10;
+  border-left: 0.4rem solid #4f8a10;
+  padding-left: 0.5rem;
+}
+.summary-failed,
+.summary-obsolete-snapshots {
+  color: #d8000c;
+  border-left: 0.4rem solid #d8000c;
+  padding-left: 0.5rem;
+}
+.summary-pending {
+  color: #9f6000;
+  border-left: 0.4rem solid #9f6000;
+  padding-left: 0.5rem;
+}
+.summary-empty {
+  color: #999;
+  border-left: 0.4rem solid #999;
+}
+
+.test-result {
+  padding: 1rem;
+  margin-bottom: 0.25rem;
+}
+.test-result:last-child {
+  border: 0;
+}
+.test-result.passed {
+  background-color: #dff2bf;
+  color: #4f8a10;
+}
+.test-result.failed {
+  background-color: #ffbaba;
+  color: #d8000c;
+}
+.test-result.pending {
+  background-color: #ffdf61;
+  color: #9f6000;
+}
+
+.test-info {
+  display: flex;
+  justify-content: space-between;
+}
+.test-suitename {
+  width: 20%;
+  text-align: left;
+  font-weight: bold;
+  word-break: break-word;
+}
+.test-title {
+  width: 40%;
+  text-align: left;
+  font-style: italic;
+}
+.test-status {
+  width: 20%;
+  text-align: right;
+}
+.test-duration {
+  width: 10%;
+  text-align: right;
+  font-size: 0.75rem;
+}
+
+.failureMessages {
+  padding: 0 1rem;
+  margin-top: 1rem;
+  border-top: 1px dashed #d8000c;
+}
+.failureMessages.suiteFailure {
+  border-top: none;
+}
+.failureMsg {
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+.suite-container {
+  margin-bottom: 2rem;
+}
+.suite-container > input[type="checkbox"] {
+  position: absolute;
+  left: -100vw;
+}
+.suite-container label {
+  display: block;
+}
+.suite-container .suite-tests {
+  overflow-y: hidden;
+  height: 0;
+}
+.suite-container > input[type="checkbox"]:checked ~ .suite-tests {
+  height: auto;
+  overflow: visible;
+}
+.suite-info {
+  padding: 1rem;
+  background-color: #eee;
+  color: #777;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+.suite-info:hover {
+  background-color: #ddd;
+  cursor: pointer;
+}
+.suite-info .suite-path {
+  word-break: break-all;
+  flex-grow: 1;
+  font-family: monospace;
+  font-size: 1rem;
+}
+.suite-info .suite-time {
+  margin-left: 0.5rem;
+  padding: 0.2rem 0.3rem;
+  font-size: 0.75rem;
+}
+.suite-info .suite-time.warn {
+  background-color: #d8000c;
+  color: #fff;
+}
+.suite-info:before {
+  content: "\2303";
+  display: inline-block;
+  margin-right: 0.5rem;
+  transform: rotate(0deg);
+}
+.suite-container > input[type="checkbox"]:checked ~ label .suite-info:before {
+  transform: rotate(180deg);
+}
+
+/* CONSOLE LOGS */
+.suite-consolelog {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: #efefef;
+}
+.suite-consolelog-header {
+  font-weight: bold;
+}
+.suite-consolelog-item {
+  padding: 0.5rem;
+}
+.suite-consolelog-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-consolelog-item-origin {
+  color: #777;
+  font-weight: bold;
+}
+.suite-consolelog-item-message {
+  color: #000;
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+
+/* OBSOLETE SNAPSHOTS */
+.suite-obsolete-snapshots {
+  margin-bottom: 0.25rem;
+  padding: 1rem;
+  background-color: #ffbaba;
+  color: #d8000c;
+}
+.suite-obsolete-snapshots-header {
+  font-weight: bold;
+}
+.suite-obsolete-snapshots-item {
+  padding: 0.5rem;
+}
+.suite-obsolete-snapshots-item pre {
+  margin: 0.5rem 0;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+.suite-obsolete-snapshots-item-message {
+  color: #000;
+  font-size: 1rem;
+  padding: 0 0.5rem;
+}
+</style></head><body><div class="jesthtml-content"><header><h1 id="title">Rapport de Test Backend BazaarNet</h1></header><div id="metadata-container"><div id="timestamp">Started: 2025-12-05 22:46:41</div><div id="summary"><div id="suite-summary"><div class="summary-total">Suites (4)</div><div class="summary-passed ">4 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div><div id="test-summary"><div class="summary-total">Tests (25)</div><div class="summary-passed ">25 passed</div><div class="summary-failed  summary-empty">0 failed</div><div class="summary-pending  summary-empty">0 pending</div></div></div></div><div id="suite-1" class="suite-container"><input id="collapsible-0" type="checkbox" class="toggle" checked="checked"/><label for="collapsible-0"><div class="suite-info"><div class="suite-path">C:\Users\fridh\OneDrive\Bureau\baazarnet\LIVRABLE_TESTS_BAAZAARNET_V5.0\02_TESTS_AUTOMATISES\backend\tests\integration\auth.test.js</div><div class="suite-time">3.167s</div></div></label><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE AUTHENTIFICATION (TC-AUTH)</div><div class="test-title">TC-AUTH-01: Devrait inscrire un utilisateur valide (201)</div><div class="test-status">passed</div><div class="test-duration">0.077s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE AUTHENTIFICATION (TC-AUTH)</div><div class="test-title">TC-AUTH-02: Devrait refuser un email existant (400)</div><div class="test-status">passed</div><div class="test-duration">0.014s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE AUTHENTIFICATION (TC-AUTH)</div><div class="test-title">TC-AUTH-03: Devrait refuser un mot de passe trop court (400)</div><div class="test-status">passed</div><div class="test-duration">0.007s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE AUTHENTIFICATION (TC-AUTH)</div><div class="test-title">TC-AUTH-04: Devrait refuser des champs vides (400)</div><div class="test-status">passed</div><div class="test-duration">0.007s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE AUTHENTIFICATION (TC-AUTH)</div><div class="test-title">TC-AUTH-05: Devrait refuser un email invalide (400)</div><div class="test-status">passed</div><div class="test-duration">0.01s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE AUTHENTIFICATION (TC-AUTH)</div><div class="test-title">TC-AUTH-06: Devrait connecter un utilisateur valide (200)</div><div class="test-status">passed</div><div class="test-duration">0.02s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE AUTHENTIFICATION (TC-AUTH)</div><div class="test-title">TC-AUTH-07: Devrait refuser un mauvais mot de passe (401)</div><div class="test-status">passed</div><div class="test-duration">0.024s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE AUTHENTIFICATION (TC-AUTH)</div><div class="test-title">TC-AUTH-08: Devrait refuser la connexion d'un utilisateur banni (403)</div><div class="test-status">passed</div><div class="test-duration">0.015s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE AUTHENTIFICATION (TC-AUTH)</div><div class="test-title">TC-AUTH-09: Devrait permettre la déconnexion (200)</div><div class="test-status">passed</div><div class="test-duration">0.012s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE AUTHENTIFICATION (TC-AUTH)</div><div class="test-title">TC-AUTH-10: Devrait initier la procédure de reset password (200)</div><div class="test-status">passed</div><div class="test-duration">0.011s</div></div></div></div></div><div id="suite-2" class="suite-container"><input id="collapsible-1" type="checkbox" class="toggle" checked="checked"/><label for="collapsible-1"><div class="suite-info"><div class="suite-path">C:\Users\fridh\OneDrive\Bureau\baazarnet\LIVRABLE_TESTS_BAAZAARNET_V5.0\02_TESTS_AUTOMATISES\backend\tests\integration\product.test.js</div><div class="suite-time">3.38s</div></div></label><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE GESTION PRODUITS (TC-PROD)</div><div class="test-title">TC-PROD-01: Devrait créer un produit valide (201)</div><div class="test-status">passed</div><div class="test-duration">0.02s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE GESTION PRODUITS (TC-PROD)</div><div class="test-title">TC-PROD-02: Devrait refuser un prix négatif (400)</div><div class="test-status">passed</div><div class="test-duration">0.007s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE GESTION PRODUITS (TC-PROD)</div><div class="test-title">TC-PROD-03: Devrait refuser un stock décimal (400)</div><div class="test-status">passed</div><div class="test-duration">0.006s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE GESTION PRODUITS (TC-PROD)</div><div class="test-title">TC-PROD-04: Devrait accepter une image JPG valide</div><div class="test-status">passed</div><div class="test-duration">0.011s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE GESTION PRODUITS (TC-PROD)</div><div class="test-title">TC-PROD-07: Devrait mettre à jour le stock (200)</div><div class="test-status">passed</div><div class="test-duration">0.013s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE GESTION PRODUITS (TC-PROD)</div><div class="test-title">TC-PROD-08: Devrait marquer le produit en rupture si stock 0</div><div class="test-status">passed</div><div class="test-duration">0.009s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE GESTION PRODUITS (TC-PROD)</div><div class="test-title">TC-PROD-09: Devrait trouver un produit par mot clé</div><div class="test-status">passed</div><div class="test-duration">0.012s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE GESTION PRODUITS (TC-PROD)</div><div class="test-title">TC-PROD-10: Devrait filtrer par catégorie</div><div class="test-status">passed</div><div class="test-duration">0.008s</div></div></div></div></div><div id="suite-3" class="suite-container"><input id="collapsible-2" type="checkbox" class="toggle" checked="checked"/><label for="collapsible-2"><div class="suite-info"><div class="suite-path">C:\Users\fridh\OneDrive\Bureau\baazarnet\LIVRABLE_TESTS_BAAZAARNET_V5.0\02_TESTS_AUTOMATISES\backend\tests\integration\admin.test.js</div><div class="suite-time">3.422s</div></div></label><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE ADMINISTRATION (TC-ADM)</div><div class="test-title">TC-ADM-01: Devrait autoriser l'accès admin (200)</div><div class="test-status">passed</div><div class="test-duration">0.014s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE ADMINISTRATION (TC-ADM)</div><div class="test-title">TC-ADM-02: Devrait refuser l'accès client (403)</div><div class="test-status">passed</div><div class="test-duration">0.005s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE ADMINISTRATION (TC-ADM)</div><div class="test-title">TC-ADM-03: Devrait permettre de bannir un utilisateur</div><div class="test-status">passed</div><div class="test-duration">0.013s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE ADMINISTRATION (TC-ADM)</div><div class="test-title">TC-ADM-05: Devrait retourner les statistiques</div><div class="test-status">passed</div><div class="test-duration">0.005s</div></div></div></div></div><div id="suite-4" class="suite-container"><input id="collapsible-3" type="checkbox" class="toggle" checked="checked"/><label for="collapsible-3"><div class="suite-info"><div class="suite-path">C:\Users\fridh\OneDrive\Bureau\baazarnet\LIVRABLE_TESTS_BAAZAARNET_V5.0\02_TESTS_AUTOMATISES\backend\tests\integration\order.test.js</div><div class="suite-time">3.439s</div></div></label><div class="suite-tests"><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE COMMANDES (TC-ORD)</div><div class="test-title">TC-ORD-05: Devrait créer une commande valide (201)</div><div class="test-status">passed</div><div class="test-duration">0.032s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE COMMANDES (TC-ORD)</div><div class="test-title">TC-ORD-06: Devrait décrémenter le stock après commande</div><div class="test-status">passed</div><div class="test-duration">0.02s</div></div></div><div class="test-result passed"><div class="test-info"><div class="test-suitename">MODULE COMMANDES (TC-ORD)</div><div class="test-title">TC-ORD-07: Devrait lister les commandes du client</div><div class="test-status">passed</div><div class="test-duration">0.012s</div></div></div></div></div></div></body></html>

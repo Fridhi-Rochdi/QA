@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-12-05T22:33:12.807Z",
+    "end": "2025-12-05T22:33:24.953Z",
+    "duration": 12146,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "db3cd99e-7270-4efd-8bbc-9a5769462a10",
+      "title": "",
+      "fullFile": "cypress\\e2e\\full_app_demo.cy.js",
+      "file": "cypress\\e2e\\full_app_demo.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "b9f215f3-b197-4b2c-a6ab-ca5a72d04f0d",
+          "title": "SCENARIO COMPLET : Parcours Client & Admin",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Devrait exécuter un cycle complet d'achat et d'administration",
+              "fullTitle": "SCENARIO COMPLET : Parcours Client & Admin Devrait exécuter un cycle complet d'achat et d'administration",
+              "timedOut": null,
+              "duration": 12070,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// ==========================================\n// PARTIE 1 : PARCOURS CLIENT (ACHAT)\n// ==========================================\n// 1. Accès à l'application\ncy.visit('test_page.html');\ncy.contains('Connexion').should('be.visible');\ncy.wait(SLOW_DOWN);\n// 2. Connexion Client\ncy.get('#email').clear().type('client@baazarnet.com');\ncy.wait(500);\ncy.get('#password').clear().type('Password123!');\ncy.wait(500);\ncy.get('#loginBtn').click();\n// Vérification redirection\ncy.get('#products-screen').should('have.class', 'active'); // Vérification explicite de la classe\ncy.contains('Nos Produits').should('be.visible');\ncy.contains('Bonjour, Client').should('be.visible');\ncy.wait(SLOW_DOWN);\n// 3. Navigation et Ajout au panier\n// Ajout iPhone\ncy.wait(1000);\ncy.contains('iPhone 15 Pro').should('exist');\ncy.contains('iPhone 15 Pro').parent().find('button').click({\n  force: true\n});\ncy.wait(1000);\n// Ajout Casque\ncy.contains('Casque Sony').parent().find('button').click({\n  force: true\n});\ncy.wait(1000);\n// 4. Consultation du Panier\ncy.contains('Panier (2)').click({\n  force: true\n});\ncy.contains('Mon Panier').should('be.visible');\ncy.contains('iPhone 15 Pro').should('be.visible');\ncy.contains('Casque Sony').should('be.visible');\ncy.get('#cart-total').should('contain', '1348'); // 999 + 349\ncy.wait(SLOW_DOWN);\n// 5. Validation de la commande (Checkout)\ncy.get('#checkoutBtn').click();\ncy.contains('Commande Validée !').should('be.visible');\ncy.contains('#ORD-2025-889').should('be.visible');\ncy.wait(SLOW_DOWN);\n// 6. Retour Accueil et Déconnexion\ncy.contains('Retour à l\\'accueil').click();\ncy.wait(500);\ncy.contains('Déconnexion').click();\ncy.contains('Connexion').should('be.visible');\ncy.wait(SLOW_DOWN);\n// ==========================================\n// PARTIE 2 : PARCOURS ADMIN (MODERATION)\n// ==========================================\n// 7. Connexion Admin\ncy.get('#email').clear().type('admin@baazarnet.com');\ncy.wait(500);\ncy.get('#password').clear().type('AdminPass123!');\ncy.wait(500);\ncy.get('#loginBtn').click();\n// Vérification Dashboard\ncy.contains('Tableau de Bord Administrateur').should('be.visible');\ncy.contains('45,300 €').should('be.visible'); // Stats\ncy.wait(SLOW_DOWN);\n// 8. Action de Modération (Bannir un utilisateur)\ncy.contains('Jean Dupont').parent().find('button').click();\n// Vérification\ncy.contains('Utilisateur banni avec succès').should('be.visible');\ncy.contains('Jean Dupont').parent().contains('Banni').should('have.class', 'badge-banned');\ncy.wait(SLOW_DOWN);\n// 9. Déconnexion Finale\ncy.contains('Déconnexion').click();\ncy.contains('Connexion').should('be.visible');\ncy.wait(SLOW_DOWN);",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected '<h3>' to be 'visible'\n\nThis element `<h3>` is not visible because its parent `<div#products-screen.screen>` has CSS property: `display: none`",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected '<h3>' to be 'visible'\n\nThis element `<h3>` is not visible because its parent `<div#products-screen.screen>` has CSS property: `display: none`\n    at Context.eval (webpack://baazarnet-frontend-tests/./cypress/e2e/full_app_demo.cy.js:44:33)",
+                "diff": null
+              },
+              "uuid": "9d83f030-c082-4da2-ad76-0d6937511987",
+              "parentUUID": "b9f215f3-b197-4b2c-a6ab-ca5a72d04f0d",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "9d83f030-c082-4da2-ad76-0d6937511987"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 12070,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "../../03_RAPPORTS_EXECUTION",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-12-05T22:30:17.987Z",
+    "end": "2025-12-05T22:30:29.357Z",
+    "duration": 11370,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "ebcdbe76-9c72-4b30-9a76-6c5da1b3c54b",
+      "title": "",
+      "fullFile": "cypress\\e2e\\full_app_demo.cy.js",
+      "file": "cypress\\e2e\\full_app_demo.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a8f663b3-ad4b-4e8c-8125-0a88f5775824",
+          "title": "SCENARIO COMPLET : Parcours Client & Admin",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Devrait exécuter un cycle complet d'achat et d'administration",
+              "fullTitle": "SCENARIO COMPLET : Parcours Client & Admin Devrait exécuter un cycle complet d'achat et d'administration",
+              "timedOut": null,
+              "duration": 11272,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// ==========================================\n// PARTIE 1 : PARCOURS CLIENT (ACHAT)\n// ==========================================\n// 1. Accès à l'application\ncy.visit('test_page.html');\ncy.contains('Connexion').should('be.visible');\ncy.wait(SLOW_DOWN);\n// 2. Connexion Client\ncy.get('#email').clear().type('client@baazarnet.com');\ncy.wait(500);\ncy.get('#password').clear().type('Password123!');\ncy.wait(500);\ncy.get('#loginBtn').click();\n// Vérification redirection\ncy.get('#products-screen').should('have.class', 'active'); // Vérification explicite de la classe\ncy.contains('Nos Produits').should('be.visible');\ncy.contains('Bonjour, Client').should('be.visible');\ncy.wait(SLOW_DOWN);\n// 3. Navigation et Ajout au panier\n// Ajout iPhone\ncy.contains('iPhone 15 Pro').should('be.visible'); // Vérifier visibilité avant interaction\ncy.contains('iPhone 15 Pro').parent().find('button').click();\ncy.contains('iPhone 15 Pro ajouté au panier').should('be.visible');\ncy.wait(1000);\n// Ajout Casque\ncy.contains('Casque Sony').parent().find('button').click();\ncy.contains('Casque Sony ajouté au panier').should('be.visible');\ncy.wait(1000);\n// 4. Consultation du Panier\ncy.contains('Panier (2)').click();\ncy.contains('Mon Panier').should('be.visible');\ncy.contains('iPhone 15 Pro').should('be.visible');\ncy.contains('Casque Sony').should('be.visible');\ncy.get('#cart-total').should('contain', '1348'); // 999 + 349\ncy.wait(SLOW_DOWN);\n// 5. Validation de la commande (Checkout)\ncy.get('#checkoutBtn').click();\ncy.contains('Commande Validée !').should('be.visible');\ncy.contains('#ORD-2025-889').should('be.visible');\ncy.wait(SLOW_DOWN);\n// 6. Retour Accueil et Déconnexion\ncy.contains('Retour à l\\'accueil').click();\ncy.wait(500);\ncy.contains('Déconnexion').click();\ncy.contains('Connexion').should('be.visible');\ncy.wait(SLOW_DOWN);\n// ==========================================\n// PARTIE 2 : PARCOURS ADMIN (MODERATION)\n// ==========================================\n// 7. Connexion Admin\ncy.get('#email').clear().type('admin@baazarnet.com');\ncy.wait(500);\ncy.get('#password').clear().type('AdminPass123!');\ncy.wait(500);\ncy.get('#loginBtn').click();\n// Vérification Dashboard\ncy.contains('Tableau de Bord Administrateur').should('be.visible');\ncy.contains('45,300 €').should('be.visible'); // Stats\ncy.wait(SLOW_DOWN);\n// 8. Action de Modération (Bannir un utilisateur)\ncy.contains('Jean Dupont').parent().find('button').click();\n// Vérification\ncy.contains('Utilisateur banni avec succès').should('be.visible');\ncy.contains('Jean Dupont').parent().contains('Banni').should('have.class', 'badge-banned');\ncy.wait(SLOW_DOWN);\n// 9. Déconnexion Finale\ncy.contains('Déconnexion').click();\ncy.contains('Connexion').should('be.visible');\ncy.wait(SLOW_DOWN);",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: expected '<h3>' to be 'visible'\n\nThis element `<h3>` is not visible because its parent `<div#products-screen.screen>` has CSS property: `display: none`",
+                "estack": "AssertionError: Timed out retrying after 4000ms: expected '<h3>' to be 'visible'\n\nThis element `<h3>` is not visible because its parent `<div#products-screen.screen>` has CSS property: `display: none`\n    at Context.eval (webpack://baazarnet-frontend-tests/./cypress/e2e/full_app_demo.cy.js:45:33)",
+                "diff": null
+              },
+              "uuid": "e1adaf9c-86a8-4275-aeeb-de50da8ae22c",
+              "parentUUID": "a8f663b3-ad4b-4e8c-8125-0a88f5775824",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "e1adaf9c-86a8-4275-aeeb-de50da8ae22c"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 11272,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "../../03_RAPPORTS_EXECUTION",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

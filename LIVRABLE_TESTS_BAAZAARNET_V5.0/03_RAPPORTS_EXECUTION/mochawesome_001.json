@@ -1,0 +1,109 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2025-12-05T22:24:02.862Z",
+    "end": "2025-12-05T22:24:08.561Z",
+    "duration": 5699,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "7ee1cced-cf3b-4e3f-ac11-294a2fc19d72",
+      "title": "",
+      "fullFile": "cypress\\e2e\\full_app_simulation.cy.js",
+      "file": "cypress\\e2e\\full_app_simulation.cy.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "a921651e-a125-4953-b16b-562d0906ec50",
+          "title": "SCENARIO COMPLET : Parcours Utilisateur & Admin",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Devrait exécuter le scénario complet de bout en bout",
+              "fullTitle": "SCENARIO COMPLET : Parcours Utilisateur & Admin Devrait exécuter le scénario complet de bout en bout",
+              "timedOut": null,
+              "duration": 5592,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "// 1. Visite du site\ncy.visit(url);\ncy.contains('BazaarNet').should('be.visible');\ncy.wait(1000);\n// ------------------------------------------------\n// PHASE 1 : INSCRIPTION & CONNEXION CLIENT\n// ------------------------------------------------\ncy.log('--- PHASE 1 : INSCRIPTION ---');\ncy.get('#nav-register').click();\ncy.get('#reg-name').type('Jean Dupont');\ncy.wait(500);\ncy.get('#reg-email').type('client@test.com');\ncy.wait(500);\ncy.get('#reg-pass').type('Password123!');\ncy.wait(500);\ncy.get('#btn-register').click();\ncy.contains('Compte créé avec succès').should('be.visible');\ncy.wait(1000);\ncy.log('--- PHASE 2 : CONNEXION ---');\ncy.get('#login-email').type('client@test.com');\ncy.wait(500);\ncy.get('#login-pass').type('Password123!');\ncy.wait(500);\ncy.get('#btn-login').click();\ncy.contains('Connexion réussie').should('be.visible');\ncy.wait(1500);\n// ------------------------------------------------\n// PHASE 3 : ACHAT (PRODUITS & PANIER)\n// ------------------------------------------------\ncy.log('--- PHASE 3 : SHOPPING ---');\ncy.contains('Nos Produits').should('be.visible');\n// Ajout iPhone\ncy.contains('iPhone 15 Pro').parent().find('button').click();\ncy.wait(800);\n// Ajout Casque\ncy.contains('Sony WH-1000XM5').parent().find('button').click();\ncy.wait(800);\n// Voir Panier\ncy.contains('Panier (2)').click();\ncy.wait(1000);\ncy.contains('Mon Panier').should('be.visible');\ncy.contains('iPhone 15 Pro').should('be.visible');\ncy.contains('Total: 1348 €').should('be.visible');\ncy.wait(1000);\n// Checkout\ncy.get('#btn-checkout').click();\ncy.contains('Commande validée').should('be.visible');\ncy.wait(2000);\n// Déconnexion\ncy.get('#nav-logout').click();\ncy.contains('Connexion').should('be.visible');\ncy.wait(1000);\n// ------------------------------------------------\n// PHASE 4 : ADMINISTRATION\n// ------------------------------------------------\ncy.log('--- PHASE 4 : ADMIN ---');\ncy.get('#login-email').clear().type('admin@test.com');\ncy.wait(500);\ncy.get('#login-pass').type('AdminPass!');\ncy.wait(500);\ncy.get('#btn-login').click();\ncy.contains('Dashboard Administrateur').should('be.visible');\ncy.wait(1500);\n// Bannir un utilisateur\ncy.contains('Jean Dupont').parent().find('#btn-ban-1').click();\ncy.contains('Utilisateur banni').should('be.visible');\ncy.contains('Banni').should('have.css', 'color', 'rgb(255, 0, 0)'); // Vérifie la couleur rouge\ncy.wait(2000);\ncy.log('--- FIN DU SCENARIO ---');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `#nav-register`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `#nav-register`, but never found it.\n    at Context.eval (webpack://baazarnet-frontend-tests/./cypress/e2e/full_app_simulation.cy.js:15:11)",
+                "diff": null
+              },
+              "uuid": "5db4b678-d612-410c-aa7c-3b535a8c92ec",
+              "parentUUID": "a921651e-a125-4953-b16b-562d0906ec50",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "5db4b678-d612-410c-aa7c-3b535a8c92ec"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 5592,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "../../03_RAPPORTS_EXECUTION",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "baazarnet-frontend-tests",
+  "version": "1.0.0",
+  "description": "Tests E2E pour le Frontend BazaarNet",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run"
+  },
+  "devDependencies": {
+    "cypress": "^12.9.0",
+    "mochawesome": "^7.1.3"
+  }
+}
